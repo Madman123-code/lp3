@@ -1,0 +1,101 @@
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Bank {
+
+    mapping(address => uint) balances;
+
+    // Deposit money
+    function deposit() public payable {
+        require(msg.value > 0, "Enter valid amount");
+        balances[msg.sender] += msg.value;
+    }
+
+    // Withdraw money
+    function withdraw(uint amount) public {
+        require(amount > 0, "Enter valid amount");
+        require(balances[msg.sender] >= amount, "Not enough balance");
+
+        balances[msg.sender] -= amount;
+        payable(msg.sender).transfer(amount);
+    }
+
+    // Show balance
+    function showBalance() public view returns (uint) {
+        return balances[msg.sender];
+    }
+}
+
+
+Open Remix IDE: Visit app.remix.live in Google Chrome.
+
+
+
+Open File Explorer: Click the Files icon on the left sidebar.
+
+
+
+Create Solidity file: Click the + Create button and create BankAccount.sol.
+
+
+
+Write the program: Click BankAccount.sol in File Explorer and paste the Solidity smart contract code in the centre editor.
+
+
+
+Compile the contract: Click the Solidity Compiler icon (third icon on the left sidebar) and click Compile BankAccount.sol.
+
+
+
+Open deployment panel: Click the Deploy icon (Ethereum diamond icon on the left sidebar).
+
+
+
+Select environment: Under Environment, select Remix VM from the dropdown menu.
+
+
+
+Select contract: Under Contract, select Bank.
+
+
+
+Set deployment value: In the Value field below the Contract section, enter 0 and select Wei.
+
+
+
+Deploy contract: Click the blue Deploy button at the bottom of the deployment panel.
+
+
+
+Verify deployment: Click the Deployed Contracts tab beside the Deploy tab and expand the deployed Bank contract.
+
+
+
+Deposit money: In the deployed contract panel, locate the Value field, enter 1, select Ether, scroll to the deposit() function and click Transact.
+
+
+
+Check balance: Locate showBalance() under Functions and click Call to display the deposited balance.
+
+
+
+Withdraw money: Find withdraw(uint256) under Functions, enter 500000000000000000 in its input field, set the Value field to 0 Ether and click Transact.
+
+
+
+Verify final balance: Locate showBalance() again and click Call to check the remaining balance.
+
+
+
+Check contract balance: Scroll down in the deployed contract panel and verify the Balance field displays the remaining ETH.
+
+
+
+Capture screenshots: Take screenshots of the Solidity code, successful compilation, deployment, deposit, balance output and withdrawal.
+
+
+
+Write conclusion: Record the successful implementation and testing of the Bank Smart Contract in your practical journal.
+
+
