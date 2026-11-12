@@ -1,0 +1,199 @@
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract StudentData {
+
+    // Structure to store student details
+    struct Student {
+        uint id;
+        string name;
+        uint age;
+        string course;
+    }
+
+    // Array to store multiple students
+    Student[] public students;
+
+    // Variable to count fallback calls
+    uint public fallbackCalls;
+
+    // Function to add student details
+    function addStudent(
+        uint _id,
+        string memory _name,
+        uint _age,
+        string memory _course
+    ) public {
+        students.push(Student(_id, _name, _age, _course));
+    }
+
+    // Function to get student details
+    function getStudent(uint index)
+        public
+        view
+        returns (uint, string memory, uint, string memory)
+    {
+        require(index < students.length, "Invalid student index");
+
+        Student memory s = students[index];
+
+        return (s.id, s.name, s.age, s.course);
+    }
+
+    // Function to get total number of students
+    function getStudentCount() public view returns (uint) {
+        return students.length;
+    }
+
+    // Fallback function
+    fallback() external payable {
+        fallbackCalls++;
+    }
+}
+
+
+steps
+Open Google Chrome and visit **https://remix.ethereum.org/**.
+
+
+Click the File Explorer icon on the left sidebar.
+
+
+Open the contracts folder and click New File (+).
+
+
+Name the file StudentData.sol.
+
+
+Open the file and write/paste the complete Solidity program.
+
+
+Click the Solidity Compiler icon on the left sidebar.
+
+
+Select compiler version 0.8.20 or compatible 0.8.x.
+
+
+
+Click Compile StudentData.sol.
+
+
+
+Verify the green compilation success indicator.
+
+
+
+Click Deploy & Run Transactions (Ethereum icon on the left sidebar).
+
+
+
+Select Remix VM (Cancun) under Environment.
+
+
+
+Select StudentData under Contract.
+
+
+
+Keep Value as 0 Wei.
+
+
+
+Click the orange Deploy button.
+
+
+
+Wait for deployment success and locate StudentData under Deployed Contracts.
+
+
+
+Expand the deployed contract using its arrow.
+
+
+
+Under addStudent, enter ID 1, Name Rahul, Age 20, Course CS, and click Transact.
+
+
+
+Enter ID 2, Name Sita, Age 21, Course IT, and click Transact.
+
+
+
+Enter the third student's details if required and click Transact.
+
+
+
+Find getStudentCount and click Call to verify the total number of records.
+
+
+
+Find getStudent, enter index 0, and click Call to display the first student.
+
+
+
+Enter index 1 and click Call to display the second student.
+
+
+
+Enter index 2 and click Call to display the third student if added.
+
+
+
+Find students, enter the required array index, and click Call to inspect stored records.
+
+
+
+Find fallbackCalls and click Call to check its initial counter.
+
+
+
+Scroll down to Low level interaction in the deployed contract panel.
+
+
+
+Click the + icon to expand Low level interaction.
+
+
+
+Enter empty calldata 0x, keep Value at 0 Wei, and Gas limit on Auto.
+
+
+
+Click Transact/Send to execute the fallback function.
+
+
+
+Repeat the fallback transaction if required.
+
+
+
+Return to fallbackCalls and click Call to verify the updated counter.
+
+
+
+Open Transaction History in the left panel.
+
+
+
+Select the required addStudent or fallback transaction.
+
+
+
+Click the small downward arrow beside Debug to expand transaction details.
+
+
+
+Record Transaction Hash, Transaction Cost (Gas), and Execution Cost (Gas).
+
+
+
+Repeat for other transactions and record the gas observations.
+
+
+
+Take screenshots of compilation, deployment, student records, fallback execution, and gas details.
+
+
+
+Write the conclusion in your practical journal.
